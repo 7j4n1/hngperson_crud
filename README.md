@@ -32,7 +32,7 @@ Before you start, make sure you have the following prerequisites installed on yo
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-api-repo.git
+   git clone https://github.com/7j4n1/hngperson_crud.git
    cd your-api-repo
 
 2. Install PHP dependencies using Composer:
@@ -40,4 +40,16 @@ Before you start, make sure you have the following prerequisites installed on yo
     ```bash
     composer install
     ```
-    
+3. Create a .env file by copying the .env.example file and configure your database settings:
+    ```bash
+    cp .env.example .env
+    ```
+4. Run the migrations:
+    ```bash
+    php artisan migrate
+    ```
+5. Start the development server:
+    ```bash
+    php artisan serve
+
+    ```
