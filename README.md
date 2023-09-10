@@ -80,5 +80,26 @@ The API uses JSON for both requests and responses. The following table describes
         <td>POST /api</td>
         <td>201 Created with the newly created person in the response body</td>
     </tr>
+    <tr>
+        <td>GET /api</td>
+        <td>200 OK with an array of people in the response body.</td>
+    </tr>
+    <tr>
+        <td>GET /api/{name}</td>
+        <td>200 OK with the person with the specified name in the response body.</td>
+    </tr>
+    <tr>
+        <td>PUT /api/{name}</td>
+        <td>200 OK with the updated person in the response body.</td>
+    </tr>
+    <tr>
+        <td>DELETE /api</td>
+        <td>204 No Content</td>
+    </tr>
+    <tr>
+        <td>DELETE /api/{name}</td>
+        <td>204 No Content</td>
+    </tr>
+
 </tbody>
 </table>

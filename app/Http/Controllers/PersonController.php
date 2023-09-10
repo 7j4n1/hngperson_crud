@@ -131,7 +131,7 @@ class PersonController extends Controller
 
         return response()->json([
             'message' => "Record deleted successfully",
-        ], 200);
+        ], 204);
     }
 
     public function destroyByBody(Request $request)
@@ -158,12 +158,12 @@ class PersonController extends Controller
         if (!$deleteData) {
             return response()->json([
                 'message' => "Error occured while deleting record",
-            ], 200);
+            ], 404);
         }
 
         return response()->json([
             'message' => "Record deleted successfully",
-        ], 200);
+        ], 204);
     }
 
     
