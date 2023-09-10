@@ -73,6 +73,12 @@ The API uses JSON for both requests and responses. The following table describes
 <table>
 <thead>
 <th> Requests </th>
-<th> Responses </th>
+<th> Response </th>
 </thead>
+<tbody>
+    <tr>
+        <td>POST /api</td>
+        <td>201 Created with the newly created person in the response body</td>
+    </tr>
+</tbody>
 </table>
