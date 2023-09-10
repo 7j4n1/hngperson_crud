@@ -1,6 +1,6 @@
-# Person CRUD API Documentation
+# Simple CRUD API Documentation
 
-Welcome to the Person CRUD API documentation for your Laravel application. This API allows you to create, read, update, and delete person records.
+Welcome to the CRUD API documentation Laravel application. This API allows you to create, read, update, and delete person records.
 
 ## Table of Contents
 
@@ -33,7 +33,8 @@ Before you start, make sure you have the following prerequisites installed on yo
 
    ```bash
    git clone https://github.com/7j4n1/hngperson_crud.git
-   cd your-api-repo
+   cd hngperson_crud 
+   ```
 
 2. Install PHP dependencies using Composer:
 
@@ -44,7 +45,7 @@ Before you start, make sure you have the following prerequisites installed on yo
     ```bash
     cp .env.example .env
     ```
-    Configure the databse config as follows:
+    Configure the database config variables as follows:
     ```
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -62,3 +63,16 @@ Before you start, make sure you have the following prerequisites installed on yo
     php artisan serve
 
     ```
+    Laravel API is now up and running!
+
+### API Endpoints
+
+Request/Response Formats
+The API uses JSON for both requests and responses. The following table describes the JSON format for the requests and responses:
+
+<table>
+<thead>
+<th> Requests </th>
+<th> Responses </th>
+</thead>
+</table>
