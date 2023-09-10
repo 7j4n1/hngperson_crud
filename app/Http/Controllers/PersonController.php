@@ -97,7 +97,7 @@ class PersonController extends Controller
 
         return response()->json([
             'message' => "Record updated successfully",
-            'data' => $updateData
+            'data' => $person
         ], 200);
     }
     
