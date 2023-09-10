@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    use HasFactory, HasNotifiable;
+    use HasFactory;
+
+    protected $table = 'person';
 
     /**
      *  The attributes that are mass assignable
