@@ -22,5 +22,5 @@ Route::get('/{name}', [PersonController::class, 'find']);
 Route::put('/{name}', [PersonController::class, 'update']);
 
 Route::delete('/{name}', [PersonController::class, 'destroy']);
-Route::delete('/', [PersonController::class, 'destroy2']);
+Route::delete('/', [PersonController::class, 'destroyByBody']);
 

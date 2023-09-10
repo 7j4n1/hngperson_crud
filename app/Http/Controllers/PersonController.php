@@ -134,7 +134,7 @@ class PersonController extends Controller
         ], 200);
     }
 
-    public function destroy2(Request $request)
+    public function destroyByBody(Request $request)
     {
         // validate the request data name only
         $data = $request->only('name');
