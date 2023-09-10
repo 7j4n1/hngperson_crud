@@ -14,8 +14,13 @@ use App\Http\Controllers\PersonController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/', [PersonController::class, 'store']);
-Route::get('/', [PersonController::class, 'show']);
+Route::post('/', [PersonController::class, 'create']);
+
+Route::get('/', [PersonController::class, 'index']);
 Route::get('/{name}', [PersonController::class, 'find']);
-Route::put('/{name}', [PersonController::class, 'edit']);
+
+Route::put('/{name}', [PersonController::class, 'update']);
+
+Route::delete('/{name}', [PersonController::class, 'destroy']);
+Route::delete('/', [PersonController::class, 'destroy2']);
 
