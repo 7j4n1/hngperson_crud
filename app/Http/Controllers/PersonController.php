@@ -19,7 +19,7 @@ class PersonController extends Controller
         $person = Person::all();
 
         if($person->isEmpty())
-            return response()->json(['message' => "No records available"], 200);
+            return response()->json(['message' => "No records available"], 404);
 
             return response()->json($person, 200);
     }
@@ -66,9 +66,39 @@ class PersonController extends Controller
         $person = Person::where('name', $name)->get();
 
         if($person->isEmpty())
-            return response()->json(['message' => "No record found"], 200);
+            return response()->json(['message' => "No record found"], 404);
 
         return response()->json($person, 200);
+    }
+
+    /**
+     * editing the specified resource.
+     *
+     * @param  \App\Models\Person  $person
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(string $name, Request $request){
+        $person = Person::where('name', $name)->first();
+
+        if(!$person)
+            return response()->json(['message' => "No record found"], 404);
+        // validate the request data name only
+        $data = $request->only('name');
+        // validate the request
+        $validate = Validator::make($data, [
+            'name' => 'required|string'
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json(['message' => $validate->messages()], 404);
+        }
+        // update record
+        $updateData = $person->update($data);
+
+        return response()->json([
+            'message' => "Record updated successfully",
+            'data' => $updateData
+        ], 200);
     }
     
 }
