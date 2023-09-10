@@ -16,7 +16,12 @@ class PersonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show() {
+        $person = Person::all();
 
+        if($person->isEmpty())
+            return response()->json(['message' => "No records available"], 200);
+
+            return response()->json($person, 200);
     }
     /**
      * Store a newly created resource in database.
@@ -33,12 +38,12 @@ class PersonController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['error' => $validate->messages()], 200);
+            return response()->json(['message' => $validate->messages()], 200);
         }
 
         // check if already present
         if(!Person::where('name', $request->name)->get()->isEmpty())
-            return response()->json(['error' => "User with name: $request->name already exists"], 200);
+            return response()->json(['message' => "User with name: $request->name already exists"], 200);
 
         // create the person object
         $person = Person::create([
@@ -47,11 +52,23 @@ class PersonController extends Controller
 
         // return newly created object
         return response()->json([
-            'status' => 'new person name saved successfully',
+            'message' => 'new person name saved successfully',
             'data' => $person
         ], 201);
     }
-    
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Person  $person
+     * @return \Illuminate\Http\Response
+     */
+    public function find(string $name){
+        $person = Person::where('name', $name)->get();
 
+        if($person->isEmpty())
+            return response()->json(['message' => "No record found"], 200);
+
+        return response()->json($person, 200);
+    }
     
 }

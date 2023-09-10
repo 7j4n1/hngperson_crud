@@ -15,4 +15,6 @@ use App\Http\Controllers\PersonController;
 |
 */
 Route::post('/', [PersonController::class, 'store']);
+Route::get('/', [PersonController::class, 'show']);
+Route::get('/{name}', [PersonController::class, 'find']);
 
