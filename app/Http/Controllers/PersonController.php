@@ -17,6 +17,7 @@ class PersonController extends Controller
      */
     public function index() {
         $person = Person::all();
+        
 
         if($person->isEmpty())
             return response()->json(['message' => "No records available"], 404);
@@ -66,7 +67,7 @@ class PersonController extends Controller
         $person = Person::where('name', $name)->get();
 
         if($person->isEmpty())
-            return response()->json(['message' => "No record found"], 404);
+            return response()->json(['message' => "No such record found"], 404);
 
         return response()->json($person, 200);
     }
@@ -81,7 +82,7 @@ class PersonController extends Controller
         $person = Person::where('name', $name)->first();
 
         if(!$person)
-            return response()->json(['message' => "No record found"], 404);
+            return response()->json(['message' => "No such record found"], 404);
         // validate the request data name only
         $data = $request->only('name');
         // validate the request
@@ -117,7 +118,7 @@ class PersonController extends Controller
         $person = Person::where('name', $name)->first();
 
         if(!$person)
-            return response()->json(['message' => "No record found"], 404);
+            return response()->json(['message' => "No such record found"], 404);
 
         // delete the resources
         $deleteData = $person->delete();
@@ -149,7 +150,7 @@ class PersonController extends Controller
         $person = Person::where('name', $request->name)->first();
 
         if(!$person)
-            return response()->json(['message' => "No record found"], 404);
+            return response()->json(['message' => "No such record found"], 404);
 
         // delete the resources
         $deleteData = $person->delete();
