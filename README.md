@@ -34,3 +34,10 @@ Before you start, make sure you have the following prerequisites installed on yo
    ```bash
    git clone https://github.com/yourusername/your-api-repo.git
    cd your-api-repo
+
+2. Install PHP dependencies using Composer:
+
+    ```bash
+    composer install
+    ```
+    
