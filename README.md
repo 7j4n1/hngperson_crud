@@ -44,6 +44,15 @@ Before you start, make sure you have the following prerequisites installed on yo
     ```bash
     cp .env.example .env
     ```
+    Configure the databse config as follows:
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 4. Run the migrations:
     ```bash
     php artisan migrate
