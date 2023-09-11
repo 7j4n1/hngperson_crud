@@ -8,10 +8,6 @@ Welcome to the CRUD API documentation Laravel application. This API allows you t
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [API Endpoints](#api-endpoints)
-  - [Create a Person](#create-a-person)
-  - [Retrieve a Person](#retrieve-a-person)
-  - [Update a Person](#update-a-person)
-  - [Delete a Person](#delete-a-person)
 - [Request and Response Formats](#request-and-response-formats)
 - [Sample Usage](#sample-usage)
 - [License](#license)
@@ -67,39 +63,87 @@ Before you start, make sure you have the following prerequisites installed on yo
 
 ### API Endpoints
 
-Request/Response Formats
+### Request and Response Formats
 The API uses JSON for both requests and responses. The following table describes the JSON format for the requests and responses:
 
 <table>
-<thead>
-<th> Requests </th>
-<th> Response </th>
-</thead>
-<tbody>
-    <tr>
-        <td>POST /api</td>
-        <td>201 Created with the newly created person in the response body</td>
-    </tr>
-    <tr>
-        <td>GET /api</td>
-        <td>200 OK with an array of people in the response body.</td>
-    </tr>
-    <tr>
-        <td>GET /api/{name}</td>
-        <td>200 OK with the person with the specified name in the response body.</td>
-    </tr>
-    <tr>
-        <td>PUT /api/{name}</td>
-        <td>200 OK with the updated person in the response body.</td>
-    </tr>
-    <tr>
-        <td>DELETE /api</td>
-        <td>204 No Content</td>
-    </tr>
-    <tr>
-        <td>DELETE /api/{name}</td>
-        <td>204 No Content</td>
-    </tr>
-
-</tbody>
+    <thead>
+        <th> Requests </th>
+        <th> Response </th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST /api</td>
+            <td>201 Created with the newly created person in the response body</td>
+        </tr>
+        <tr>
+            <td>GET /api</td>
+            <td>200 OK with an array of people in the response body.</td>
+        </tr>
+        <tr>
+            <td>GET /api/{id}</td>
+            <td>200 OK with the person with the specified id in the response body.</td>
+        </tr>
+        <tr>
+            <td>PUT /api/{id}</td>
+            <td>200 OK with the updated person in the response body.</td>
+        </tr>
+        <tr>
+            <td>PATCH /api/{id}</td>
+            <td>200 OK with the updated person in the response body.</td>
+        </tr>
+        <tr>
+            <td>DELETE /api/{id}</td>
+            <td>204 No Content</td>
+        </tr>
+    </tbody>
 </table>
+
+### Sample Usage
+
+The following code shows how to create a new person using the API:
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_PORT => "8000",
+  CURLOPT_URL => "{{base_url}}/api",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => json_encode([
+    'name' => 'Ahmad Dawud'
+  ]),
+  CURLOPT_HTTPHEADER => [
+    "Accept: application/json",
+    "Content-Type: application/json"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+Response
+```
+{
+  "data": {
+    "id": 1,
+    "name": "Ahmad Dawud"
+  },
+  "message": "new person name saved successfully"
+}
+```

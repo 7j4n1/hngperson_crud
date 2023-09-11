@@ -22,7 +22,9 @@ class PersonController extends Controller
         if($person->isEmpty())
             return response()->json(['message' => "No records available"], 404);
 
-            return response()->json($person, 200);
+        return response()->json([
+            'data' => $person
+        ], 200);
     }
     /**
      * Store a newly created resource in database.
@@ -63,13 +65,15 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function find(string $name){
-        $person = Person::where('name', $name)->get();
+    public function find($id){
+        $person = Person::where('id', $id)->get();
 
         if($person->isEmpty())
             return response()->json(['message' => "No such record found"], 404);
 
-        return response()->json($person, 200);
+        return response()->json([
+            'data' => $person
+        ], 200);
     }
 
     /**
@@ -78,8 +82,8 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function update(string $name, Request $request){
-        $person = Person::where('name', $name)->first();
+    public function update($id, Request $request){
+        $person = Person::where('id', $id)->first();
 
         if(!$person)
             return response()->json(['message' => "No such record found"], 404);
@@ -107,15 +111,16 @@ class PersonController extends Controller
             'data' => $person
         ], 200);
     }
+    
     /**
      * Remove the specified resource from database.
      *
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $name)
+    public function destroy($id)
     {
-        $person = Person::where('name', $name)->first();
+        $person = Person::where('id', $id)->first();
 
         if(!$person)
             return response()->json(['message' => "No such record found"], 404);
@@ -134,37 +139,37 @@ class PersonController extends Controller
         ], 204);
     }
 
-    public function destroyByBody(Request $request)
-    {
-        // validate the request data name only
-        $data = $request->only('name');
-        // validate the request
-        $validate = Validator::make($data, [
-            'name' => 'required|string'
-        ]);
+    // public function destroyByBody(Request $request)
+    // {
+    //     // validate the request data name only
+    //     $data = $request->only('name');
+    //     // validate the request
+    //     $validate = Validator::make($data, [
+    //         'name' => 'required|string'
+    //     ]);
 
-        if ($validate->fails()) {
-            return response()->json(['message' => $validate->messages()], 404);
-        }
+    //     if ($validate->fails()) {
+    //         return response()->json(['message' => $validate->messages()], 404);
+    //     }
 
-        $person = Person::where('name', $request->name)->first();
+    //     $person = Person::where('name', $request->name)->first();
 
-        if(!$person)
-            return response()->json(['message' => "No such record found"], 404);
+    //     if(!$person)
+    //         return response()->json(['message' => "No such record found"], 404);
 
-        // delete the resources
-        $deleteData = $person->delete();
-        // if error occured
-        if (!$deleteData) {
-            return response()->json([
-                'message' => "Error occured while deleting record",
-            ], 404);
-        }
+    //     // delete the resources
+    //     $deleteData = $person->delete();
+    //     // if error occured
+    //     if (!$deleteData) {
+    //         return response()->json([
+    //             'message' => "Error occured while deleting record",
+    //         ], 404);
+    //     }
 
-        return response()->json([
-            'message' => "Record deleted successfully",
-        ], 204);
-    }
+    //     return response()->json([
+    //         'message' => "Record deleted successfully",
+    //     ], 204);
+    // }
 
     
 }
