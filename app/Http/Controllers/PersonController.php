@@ -20,11 +20,11 @@ class PersonController extends Controller
         
 
         if($person->isEmpty())
-            return response()->json(['message' => "No records available"], 404);
+            return response()->json(['message' => "No records available"], 404, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
 
         return response()->json([
             'data' => $person
-        ], 200);
+        ], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
     /**
      * Store a newly created resource in database.
@@ -41,12 +41,12 @@ class PersonController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['message' => $validate->messages()], 200);
+            return response()->json(['message' => $validate->messages()], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
         }
 
         // check if already present
         if(!Person::where('name', $request->name)->get()->isEmpty())
-            return response()->json(['message' => "User with name: $request->name already exists"], 200);
+            return response()->json(['message' => "User with name: $request->name already exists"], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
 
         // create the person object
         $person = Person::create([
@@ -57,7 +57,7 @@ class PersonController extends Controller
         return response()->json([
             'message' => 'new person name saved successfully',
             'data' => $person
-        ], 201);
+        ], 201, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
     /**
      * Display the specified resource.
@@ -69,7 +69,7 @@ class PersonController extends Controller
         $person = Person::where('id', $user_id)->get();
 
         if($person->isEmpty())
-            return response()->json(['message' => "No such record found"], 404);
+            return response()->json(['message' => "No such record found"], 404, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
 
         return response()->json([
             'data' => $person
@@ -86,7 +86,7 @@ class PersonController extends Controller
         $person = Person::where('id', $user_id)->first();
 
         if(!$person)
-            return response()->json(['message' => "No such record found"], 404);
+            return response()->json(['message' => "No such record found"], 404, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
         // validate the request data name only
         $data = $request->only('name');
         // validate the request
@@ -95,7 +95,7 @@ class PersonController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['message' => $validate->messages()], 404);
+            return response()->json(['message' => $validate->messages()], 404, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
         }
         // update record
         $updateData = $person->update($data);
@@ -103,13 +103,13 @@ class PersonController extends Controller
         if (!$updateData) {
             return response()->json([
                 'message' => "Error occured while updating record",
-            ], 200);
+            ], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
         }
 
         return response()->json([
             'message' => "Record updated successfully",
             'data' => $person
-        ], 200);
+        ], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
     
     /**
@@ -123,7 +123,7 @@ class PersonController extends Controller
         $person = Person::where('id', $user_id)->first();
 
         if(!$person)
-            return response()->json(['message' => "No such record found"], 404);
+            return response()->json(['message' => "No such record found"], 404, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
 
         // delete the resources
         $deleteData = $person->delete();
@@ -131,12 +131,12 @@ class PersonController extends Controller
         if (!$deleteData) {
             return response()->json([
                 'message' => "Error occured while deleting record",
-            ], 200);
+            ], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
         }
 
         return response()->json([
             'message' => "Record deleted successfully",
-        ], 204);
+        ], 204, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     // public function destroyByBody(Request $request)
