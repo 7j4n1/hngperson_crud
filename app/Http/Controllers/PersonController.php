@@ -73,7 +73,7 @@ class PersonController extends Controller
 
         return response()->json([
             'data' => $person
-        ], 200);
+        ], 200, [], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     /**
