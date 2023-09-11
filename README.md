@@ -101,18 +101,22 @@ The API uses JSON for both requests and responses. The following table describes
 
 ### Sample Usage
 
-## Adding a new person
+## Adding a new person (201 Created)
 
-<img src="create.png" alt="Create new person" />
+<img src="samples/create.png" alt="Create new person" />
 
-## Fetch the details of a person
+## Fetch the details of a person (200 OK)
 
-<img src="read.png" alt="fetch the details of a person" />
+<img src="samples/read.png" alt="fetch the details of a person" />
 
-## Modify the details of an existing person
+## Modify the details of an existing person (200 OK)
 
-<img src="update.png" alt="modify the details of an existing person" />
+<img src="samples/update.png" alt="modify the details of an existing person" />
 
-## Remove a person
+## Remove a person (204 No Content)
 
-<img src="delete.png" alt="remove a person" />
+<img src="samples/delete.png" alt="remove a person" />
+
+### License
+
+The MIT License (MIT)
