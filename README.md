@@ -59,7 +59,7 @@ Before you start, make sure you have the following prerequisites installed on yo
     php artisan serve
 
     ```
-    Laravel API is now up and running!
+    Laravel API is now up and running on {http://localhost:8000} which is the base url!
 
 ### API Endpoints
 
@@ -101,49 +101,18 @@ The API uses JSON for both requests and responses. The following table describes
 
 ### Sample Usage
 
-The following code shows how to create a new person using the API:
-```php
-<?php
+## Adding a new person
 
-$curl = curl_init();
+<img src="create.png" alt="Create new person" />
 
-curl_setopt_array($curl, [
-  CURLOPT_PORT => "8000",
-  CURLOPT_URL => "{{base_url}}/api",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => json_encode([
-    'name' => 'Ahmad Dawud'
-  ]),
-  CURLOPT_HTTPHEADER => [
-    "Accept: application/json",
-    "Content-Type: application/json"
-  ],
-]);
+## Fetch the details of a person
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+<img src="read.png" alt="fetch the details of a person" />
 
-curl_close($curl);
+## Modify the details of an existing person
 
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
+<img src="update.png" alt="modify the details of an existing person" />
 
-Response
-```
-{
-  "data": {
-    "id": 1,
-    "name": "Ahmad Dawud"
-  },
-  "message": "new person name saved successfully"
-}
-```
+## Remove a person
+
+<img src="delete.png" alt="remove a person" />
