@@ -17,11 +17,11 @@ use App\Http\Controllers\PersonController;
 Route::post('/', [PersonController::class, 'create']);
 
 Route::get('/', [PersonController::class, 'index']);
-Route::get('/{id}', [PersonController::class, 'find']);
+Route::get('/{user_id}', [PersonController::class, 'find']);
 
-Route::put('/{id}', [PersonController::class, 'update']);
-Route::patch('/{id}', [PersonController::class, 'update']);
+Route::put('/{user_id}', [PersonController::class, 'update']);
+Route::patch('/{user_id}', [PersonController::class, 'update']);
 
-Route::delete('/{id}', [PersonController::class, 'destroy']);
+Route::delete('/{user_id}', [PersonController::class, 'destroy']);
 // Route::delete('/', [PersonController::class, 'destroyByBody']);
 

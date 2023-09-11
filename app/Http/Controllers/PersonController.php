@@ -65,8 +65,8 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function find($id){
-        $person = Person::where('id', $id)->get();
+    public function find($user_id){
+        $person = Person::where('id', $user_id)->get();
 
         if($person->isEmpty())
             return response()->json(['message' => "No such record found"], 404);
@@ -82,8 +82,8 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request){
-        $person = Person::where('id', $id)->first();
+    public function update($user_id, Request $request){
+        $person = Person::where('id', $user_id)->first();
 
         if(!$person)
             return response()->json(['message' => "No such record found"], 404);
@@ -118,9 +118,9 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user_id)
     {
-        $person = Person::where('id', $id)->first();
+        $person = Person::where('id', $user_id)->first();
 
         if(!$person)
             return response()->json(['message' => "No such record found"], 404);
